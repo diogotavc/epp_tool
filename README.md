@@ -4,6 +4,10 @@
 
 [epp_tool](https://github.com/diogotavc/epp_tool) ~~(very creative, indeed)~~ aims to provide a very simple service to set, during boot, the epp bias to something more conservative (defaults to performance), and to provide a very quick way to toggle between modes afterwards.
 
+Service                    |  GUI Tool
+:-------------------------:|:-------------------------:
+![](epp_tool_service.png)  |  ![](epp_tool.png)
+
 ### EPP bias?
 
 Kernel 6.3 now supports a new scalling driver, amd_pstate=active (read about it on the [Linux Kernel documentation](https://docs.kernel.org/admin-guide/pm/amd-pstate.html#active-mode) or on the [ArchWiki](https://wiki.archlinux.org/title/CPU_frequency_scaling#amd_pstate)), on modern AMD ~~(and Intel, but I don't really care to adapt my script)~~ processors. The TL;DR is that the driver provides a hint to the hardware whether to bias toward performance or energy efficiency.
