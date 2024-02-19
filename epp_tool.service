@@ -1,0 +1,9 @@
+[Unit]
+Description=Set EPP bias to power, to save power upon booting.
+After=graphical.target
+
+[Service]
+ExecStart=/bin/bash -c 'echo balance_power | tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference'
+
+[Install]
+WantedBy=default.target

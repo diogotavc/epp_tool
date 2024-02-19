@@ -1,0 +1,35 @@
+#!/bin/bash
+
+current=$(cat /sys/devices/system/cpu/cpufreq/policy0/energy_performance_preference)
+
+profile=$(zenity --list \
+    --title="Select Power Profile" \
+    --column="currently set to ${current}" \
+    --ok-label="Apply" \
+    "Performance" \
+    "Balance Performance" \
+    "Balance Power" \
+    "Power" \
+    --width=500 --height=400)
+
+if [ $? -ne 0 ]; then
+    exit
+fi
+
+case $profile in
+    "Performance")
+        epp="performance" ;;
+    "Balance Performance")
+        epp="balance_performance" ;;
+    "Balance Power")
+        epp="balance_power" ;;
+    "Power")
+        epp="power" ;;
+esac
+
+echo $epp | pkexec tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
+
+if [ $? -ne 0 ]; then
+    zenity --error \
+    --text="Failed to apply changes!"
+fi
