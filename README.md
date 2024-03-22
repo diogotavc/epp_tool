@@ -34,6 +34,9 @@ Time to copy the [unit file](epp_tool.service) to the correct location (`/etc/sy
 
 To make sure systemd is aware of the new service, reload its service files with `systemctl daemon-reload`. You may now enable the service with `systemctl enable epp_tool`.
 
+> [!NOTE]
+> If you are get an error saying that the unit file could not be found, it may be related to SELinux. Reset its security context using `restorecon -v /etc/systemd/system/epp_tool.service`.
+
 To verify it's working properly, you can reboot or start the service with `systemctl start epp_tool`. The output of `cat /sys/devices/system/cpu/cpufreq/policy0/energy_performance_preference` should now match what was set by the service.
 
 ### Changing the bias after booting
