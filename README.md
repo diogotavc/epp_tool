@@ -16,7 +16,6 @@ Intel has had a similar scaling driver for a few years and, as such, should be s
 
 **TL;DR:** the driver provides a hint to the hardware whether to bias toward performance or energy efficiency.
 
-
 ### Why would I need it?
 
 Whilst I haven't tested on other machines, I've seen tangible gains in battery life on my machine, so I decided to make a repository for it. Some improvements and updates may or may not come, so use this as a base, if you need it for yourself.
@@ -51,26 +50,8 @@ If you don't want to mock around with the terminal every time you want to toggle
 
 If you do want to mock around with the terminal, then just `echo $epp | sudo tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference`, epp being whatever mode you want.
 
----
-
-### Missing features:
-
-- More power related features, not possible to implement with Zenity, like battery charging threshold control and power draw monitoring, among others.
-- A config file for better control over the default modes, for when certain conditions are met and for the other features, which are yet to be implemented.
-- Extensive testing, I'm way too underqualified.
-
 ### Available modes:
 
 You may check using `cat /sys/devices/system/cpu/cpufreq/policy0/energy_performance_available_preferences/`. The following should be present:
 
 ```default performance balance_performance balance_power power```
-
-### Tested on:
-
-- Lenovo ThinkPad E14 Gen 3
-    - Fedora Workstation 39
-    - AMD Ryzen 7 5700U
-
-- Lenovo Thinkpad P15 Gen 1
-    - Bazzite 39
-    - Intel i7-10850H
